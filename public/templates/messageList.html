@@ -1,0 +1,25 @@
+<div class="panel panel-primary">
+    <div class="panel-heading text-capitalize">
+        ({{messages.length}}) {{heading}}
+    </div>
+    <div class="panel-body">
+        <ul class="list-group" ng-show="vm.isVisible">
+            <li class="list-group-item clearfix" ng-repeat="message in vm.paginatedMessages">
+                <div class="pull-left">
+                    <span><b>from:</b> {{message.name}} </span>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-default" ng-click="vm.viewMessage(message)"><i class="glyphicon glyphicon-eye-open"></i> view</button>
+                </div>
+            </li>
+        </ul>
+        <p ng-show="!vm.isVisible">
+            No Messages found
+        </p>
+        <div class="text-center">
+            <ul ng-show="vm.isVisible" uib-pagination boundary-links="true" items-per-page="vm.itemsPerPage" total-items="vm.totalMessages" ng-model="vm.currentPage" ng-change="vm.paginate()" class="pagination-sm">
+            </ul>
+        </div>
+    </div>
+    <message message="vm.messageToView" show="vm.showModal"></message>
+</div>
